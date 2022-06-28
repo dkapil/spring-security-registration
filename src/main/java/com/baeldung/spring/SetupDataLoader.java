@@ -58,6 +58,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         // == create initial user
         createUserIfNotFound("test@test.com", "Test", "Test", "test", new ArrayList<>(Arrays.asList(adminRole)));
 
+        
+        
+        final Privilege cmsWritePrivilege = createPrivilegeIfNotFound("CMS_WRITE_PRIVILEGE");
+        final Privilege productWritePrivilege = createPrivilegeIfNotFound("PRODUCT_WRITE_PRIVILEGE");
+
+        createRoleIfNotFound("BACKOFFICE_CONTENT_EDITORS", Arrays.asList(cmsWritePrivilege));
+        createRoleIfNotFound("BACKOFFICE_PRODUCT_EDITORS", Arrays.asList(productWritePrivilege));
+		createRoleIfNotFound("BACKOFFICE_ADMIN", Arrays.asList(cmsWritePrivilege, productWritePrivilege));        
+        
         alreadySetup = true;
     }
 

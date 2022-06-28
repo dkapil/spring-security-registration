@@ -2,8 +2,6 @@ package com.baeldung.spring;
 
 import java.util.Locale;
 
-import com.baeldung.validation.EmailValidator;
-import com.baeldung.validation.PasswordMatchesValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -12,6 +10,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.context.request.RequestContextListener;
@@ -25,9 +24,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
+import com.baeldung.validation.EmailValidator;
+import com.baeldung.validation.PasswordMatchesValidator;
+
 @Configuration
 @ComponentScan(basePackages = { "com.baeldung.web" })
 @EnableWebMvc
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class MvcConfig implements WebMvcConfigurer {
 
     public MvcConfig() {

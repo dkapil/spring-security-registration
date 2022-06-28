@@ -5,6 +5,7 @@ import java.util.Locale;
 import com.baeldung.security.ActiveUserStore;
 import com.baeldung.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ public class UserController {
     @Autowired
     IUserService userService;
 
+    @Secured("ROLE_SUPERADMIN")
     @GetMapping("/loggedUsers")
     public String getLoggedUsers(final Locale locale, final Model model) {
         model.addAttribute("users", activeUserStore.getUsers());
