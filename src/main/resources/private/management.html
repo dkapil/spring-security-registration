@@ -1,0 +1,11 @@
+<html>
+<head>
+</head>
+<body>
+	<div class="container">
+		<h1>This is the landing page for the Manager</h1>
+
+		<div sec:authorize="hasAuthority('MANAGEMENT_PRIVILEGE')">This text is only visible to a manager</div>
+	</div>
+</body>
+</html> 
